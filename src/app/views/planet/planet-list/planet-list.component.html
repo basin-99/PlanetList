@@ -1,0 +1,64 @@
+<h1>Look at this!</h1>
+ <div class="container">
+    <mat-form-field appearance="outline">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+      
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="rotation_period">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Rotation Period </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.rotation_period}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="orbital_period">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Orbital Period </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.orbital_period}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="diameter">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Diameter </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.diameter}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="climate">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Climate </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.climate}} </mat-cell>
+            </ng-container>
+
+          <ng-container matColumnDef="gravity">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Gravity </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.gravity}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="terrain">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Terrain </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.terrain}} </mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="surface_water">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Surface water </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.surface_water}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="population">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Population </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.population}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+              <mat-cell *matCellDef="let row" (click)="navigateToPlanetInfo(row.url)" routerLink="/planet/info"><mat-icon >info</mat-icon></mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+</div>

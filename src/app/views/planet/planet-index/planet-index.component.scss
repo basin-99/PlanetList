@@ -1,0 +1,35 @@
+$detailColor: #d6ab00;
+
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('../../../../images/background.png');
+    background-position: top;
+    width: 100vw;
+    height: 100vh;
+    .container{
+        display: flex;
+        flex-direction: column;
+        margin-top: 20vh;
+        align-items: center;
+        h1{
+            font-size: 72px;
+            color: #ffffff;
+            font-weight: 100;
+        }
+        button{
+            background: none;
+            border: 1px solid $detailColor;
+            color: $detailColor;
+            padding: 10px;
+            font-weight: 100;
+            font-size: 22px;
+            font-family: 'Lato', sans-serif;
+            
+            &:hover{
+                border: 2px solid $detailColor;
+            }
+        }
+    }
+}
