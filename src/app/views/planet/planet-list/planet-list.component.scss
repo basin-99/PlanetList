@@ -1,0 +1,43 @@
+$detailColor: #d6ab00;
+
+h1{
+    text-align: center;
+    color:$detailColor;
+    font-weight: 100;
+    font-size: 68px;
+}
+
+.container{
+    width: 90vw;
+    margin: 0 auto;
+    .mat-elevation-z8{
+        width: 100%;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: rgba(255,255,255,0.4);    
+    }
+    .mat-form-field {
+        font-size: 14px;
+        width: 40%;
+    }
+    mat-header-cell, mat-cell {
+        width: 25%;
+    }
+    mat-paginator{
+        width: 100%;
+    }
+    mat-icon{
+        color: $detailColor;
+    }
+}
+
+mat-paginator{
+    background: rgba(255,255,255,0.4);
+    width: 90vw;   
+}
+::ng-deep .mat-form-field-outline{
+    background: rgba(255,255,255,0.4); 
+    border-radius: 5px;
+}
