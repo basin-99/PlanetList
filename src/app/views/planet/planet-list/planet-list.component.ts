@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, Output , EventEmitter, Input} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import { PlanetData } from 'src/app/models/planet-data';
-import { PlanetsService } from '../../services/planets.service';
+import { PlanetsService } from '../../services/planets/planets.service';
 import { getPlanetId } from '../../../_helpers/api-helper';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Router } from '@angular/router';
+import { NotificationsService } from '../../services/notifications/notifications.service';
 
 @Component({
   selector: 'app-planet-list',
@@ -17,13 +17,13 @@ export class PlanetListComponent implements OnInit {
   dataSource: MatTableDataSource<PlanetData>;
   planets: PlanetData[] = []
 
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor( 
     private planetMenager: PlanetsService,
-    private router: Router
+    private router: Router,
+    private notification: NotificationsService
     ) { 
     this.dataSource = new MatTableDataSource();
     this.getPlanets();
@@ -41,8 +41,11 @@ export class PlanetListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.planets);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    });
-
+      this.notification.snackBarSuccess();
+    }, error => {
+      this.notification.snackBarError();
+      }
+    );
   }
 
   navigateToPlanetInfo(url){

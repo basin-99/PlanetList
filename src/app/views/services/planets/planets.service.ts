@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { PlanetListComponent } from '../planet/planet-list/planet-list.component';
 import { PlanetData } from 'src/app/models/planet-data';
-import { apiEndpoints } from '../../_helpers/routing.endpoints';
+import { apiEndpoints } from '../../../_helpers/routing.endpoints';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class PlanetsService {
   private planet: PlanetData;
   constructor( private http: HttpClient ) { }
