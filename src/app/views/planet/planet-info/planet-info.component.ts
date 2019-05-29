@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PlanetsService } from '../../services/planets.service';
-import { PlanetListComponent } from '../planet-list/planet-list.component';
+import { PlanetsService } from '../../services/planets/planets.service';
 import { ActivatedRoute } from '@angular/router';
+import { NotificationsService } from '../../services/notifications/notifications.service';
 
 @Component({
   selector: 'app-planet-info',
@@ -9,8 +9,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./planet-info.component.scss']
 })
 export class PlanetInfoComponent implements OnInit {
-  constructor( private planetManager: PlanetsService, private activatedRoute: ActivatedRoute ) { }
+  constructor(
+     private planetManager: PlanetsService, 
+     private activatedRoute: ActivatedRoute,
+     private notification: NotificationsService
+      ) { }
 
+  details = []
   
   ngOnInit() {
     this.prepareView();
@@ -19,14 +24,14 @@ export class PlanetInfoComponent implements OnInit {
   prepareView(){
     this.activatedRoute.paramMap.subscribe(params => {
       const id = +params.get('id');
-      console.log(id);
       this.planetManager.getPlanetInfo(id).subscribe((response) => {
-        console.log(response);
+        const data = response as any;
+        this.details = data;
+        this.notification.snackBarSuccess();
       }, error => {
-        console.log(error);
+        this.notification.snackBarError();
         }
       );
-    
     });
   }
 }

@@ -1,3 +1,22 @@
-<p>
-  planet-info works!
-</p>
+<mat-toolbar color="white">
+    <mat-toolbar-row>
+        <mat-icon routerLink="/planet/list">keyboard_arrow_left</mat-icon>
+        <span>Look at detial</span>
+      </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container">
+    
+    <h1>{{details.name}}</h1>
+
+    <div class="details">
+        <div><p class="title">rotation period</p> <p>{{details.rotation_period}}</p></div>
+        <div><p class="title">orbital period</p> <p>{{details.orbital_period}}</p></div>
+        <div><p class="title">diameter</p> <p>{{details.diameter}}</p></div>
+        <div><p class="title">climate</p> <p>{{details.climate}}</p></div>
+        <div><p class="title">gravity</p> <p>{{details.gravity}}</p></div>
+        <div><p class="title">terrain </p><p>{{details.terrain}}</p></div>
+        <div><p class="title">surface water </p><p>{{details.surface_water}}</p></div>
+        <div><p class="title">population </p><p>{{details.population}}</p></div>
+    </div>
+</div>

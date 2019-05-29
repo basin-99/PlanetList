@@ -8,6 +8,7 @@ import { PlanetIndexComponent } from './views/planet/planet-index/planet-index.c
 import { MaterialModule } from './material';
 import { HttpClientModule } from '@angular/common/http';
 import { PlanetInfoComponent } from './views/planet/planet-info/planet-info.component';
+import '../app/_helpers/extensions/string.format';
 
 @NgModule({
   declarations: [

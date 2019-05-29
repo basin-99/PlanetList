@@ -5,11 +5,13 @@ import {
   MatSortModule, 
   MatTableModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatListModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
-
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -21,7 +23,10 @@ import {MatIconModule} from '@angular/material/icon';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule,
+    MatToolbarModule,
+    MatSnackBarModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -30,7 +35,10 @@ import {MatIconModule} from '@angular/material/icon';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule,
+    MatToolbarModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }
