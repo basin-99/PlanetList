@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PlanetListComponent } from './views/planet/planet-list/planet-list.component';
-import { PlanetIndexComponent } from './views/planet/planet-index/planet-index.component';
-import { PlanetInfoComponent } from './views/planet/planet-info/planet-info.component';
+import { PlanetListComponent } from './components/planet/planet-list/planet-list.component';
+import { PlanetIndexComponent } from './components/planet/planet-index/planet-index.component';
+import { PlanetInfoComponent } from './components/planet/planet-info/planet-info.component';
 
 const routes: Routes = [{
   path: '',
