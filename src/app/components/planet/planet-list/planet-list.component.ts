@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, Output , EventEmitter, Input} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input, AfterViewChecked, OnChanges } from '@angular/core';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { PlanetData } from 'src/app/models/planet-data';
 import { PlanetsService } from '../../services/planets/planets.service';
 import { getPlanetId } from '../../../_helpers/api-helper';
@@ -11,48 +11,60 @@ import { NotificationsService } from '../../services/notifications/notifications
   templateUrl: './planet-list.component.html',
   styleUrls: ['./planet-list.component.scss']
 })
-export class PlanetListComponent implements OnInit {
+export class PlanetListComponent implements OnChanges {
 
-  displayedColumns: string[] = ['name', 'rotation_period', 'orbital_period', 'diameter', 'climate', 'gravity', 'terrain', 'surface_water', 'population', 'action'];
+  @Input() planetList: any;
+
+  @Input() nextPageLink: any;
+
+  @Output() nextPageEmit = new EventEmitter<string>();
+
+  displayedColumns: string[] =
+    [
+      'name',
+      'rotation_period',
+      'orbital_period',
+      'diameter',
+      'climate',
+      'gravity',
+      'terrain',
+      'surface_water',
+      'population',
+      'action'
+    ];
+
   dataSource: MatTableDataSource<PlanetData>;
-  planets: PlanetData[] = []
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor( 
-    private planetMenager: PlanetsService,
+  constructor(
     private router: Router,
-    private notification: NotificationsService
-    ) { 
+    private notification: NotificationsService,
+    private planetMenager: PlanetsService,
+  ) {
     this.dataSource = new MatTableDataSource();
-    this.getPlanets();
   }
 
-  ngOnInit() {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort; 
+  ngOnChanges() {
+    console.log(this.planetList);
+    console.log(this.nextPageLink);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.dataSource = new MatTableDataSource(this.planetList);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  getPlanets(){
-    this.planetMenager.getPlanets().subscribe((response) => {
-      const data = response as any;
-      this.planets = data.results as PlanetData[];
-      this.dataSource = new MatTableDataSource(this.planets);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.notification.snackBarSuccess();
-    }, error => {
-      this.notification.snackBarError();
-      }
-    );
+  nextPage() {
+    this.nextPageEmit.emit(this.nextPageLink);
   }
 
-  navigateToPlanetInfo(url){
+  navigateToPlanetInfo(url) {
     const id = getPlanetId(url);
     this.router.navigate(['/planet/info/', id]);
   }
-  
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -60,4 +72,5 @@ export class PlanetListComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
 }

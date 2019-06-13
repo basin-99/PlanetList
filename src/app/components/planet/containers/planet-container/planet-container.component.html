@@ -1,0 +1,5 @@
+<app-planet-list 
+[planetList]="planet$ | async" 
+(nextPageEmit) = "redirectToNextPage($event)"
+[nextPageLink]="nextPageLink$ | async" >
+</app-planet-list>

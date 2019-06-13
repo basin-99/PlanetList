@@ -59,6 +59,12 @@
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        <mat-toolbar>
+          <mat-toolbar-row>
+            <mat-icon (click)="nextPage()" title="Next"><button mat-raised-button color="accent">Load</button></mat-icon>
+            <span class="example-spacer"></span>
+            <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+          </mat-toolbar-row>
+        </mat-toolbar>
       </div>
 </div>
