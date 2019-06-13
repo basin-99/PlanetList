@@ -12,15 +12,18 @@ export class PlanetsService {
   private planet: PlanetData;
   constructor( private http: HttpClient ) { }
 
-  ngOnInit(){
-  }
-  
-  getPlanets(){
+  getPlanets() {
     return this.http.get(apiEndpoints.plantesList)
       .pipe(map(response => response));
   }
 
-  getPlanetInfo(id){
+  getNextPlanetsInfo(link) {
+    console.log(link);
+    return this.http.get(link.nextPageLink)
+      .pipe(map(response => response));
+  }
+
+  getPlanetInfo(id) {
     return this.http.get(apiEndpoints.planetInfo.format(id))
       .pipe(map(response => response));
   }

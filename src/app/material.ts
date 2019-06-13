@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { 
+import {
   MatPaginatorModule,
-  MatSortModule, 
+  MatSortModule,
   MatTableModule,
   MatFormFieldModule,
   MatInputModule,
-  MatListModule
+  MatListModule,
+  MatButtonModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
@@ -26,7 +27,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatIconModule,
     MatListModule,
     MatToolbarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatButtonModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -38,7 +40,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatIconModule,
     MatListModule,
     MatToolbarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatButtonModule
   ]
 })
 export class MaterialModule { }
